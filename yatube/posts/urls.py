@@ -3,6 +3,8 @@ from django.urls import path
 
 from . import views
 
+app_name ='posts'
+
 urlpatterns = [
     #Главная страница
     path('', views.index),
@@ -14,3 +16,6 @@ urlpatterns = [
         views.posts_detail
     ),
 ]
+#urlpatterns = [
+#    path('ice_cream/', views.ice_cream_list, name='ice_cream_list'),
+#] 

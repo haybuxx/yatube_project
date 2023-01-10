@@ -15,15 +15,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from posts import views
+
+
+# Эта строчка обязательна. 
+# Без неё namespace работать не будет:
+# namespace должен быть объявлен при include и тут, в app_name
+app_name = 'posts'
 
 urlpatterns = [
+    #Импорт правил из приложения posts
+    path('', include('posts.urls', namespace = 'posts')),
+    path('group/<slug:slug>/', include('posts.urls', namespace = 'posts')),
+    #path('posts/', views.posts_list, name='posts_list'),
+    path('admin/', admin.site.urls)
+]
+
     #Главная страница
     #path('', views.Posts),
     #Страница сообществ
     #path('groups/', views.groups),
     #path('group_posts/<slug:slug>/', views.group_posts)
-
-    #Импорт правил из приложения posts
-    path('', include('posts.urls')),
-    path('admin/', admin.site.urls)
-]
+    #path('', include('posts.urls')),
