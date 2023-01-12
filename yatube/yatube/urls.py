@@ -13,10 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# По умолчанию в проект Django подключена система администрирования
 from django.contrib import admin
+# Функция include позволит использовать path() из других файлов.
+# Импортируем!
 from django.urls import include, path
 from posts import views
-
 
 # Эта строчка обязательна. 
 # Без неё namespace работать не будет:
@@ -27,13 +29,6 @@ urlpatterns = [
     #Импорт правил из приложения posts
     path('', include('posts.urls', namespace = 'posts')),
     path('group/<slug:slug>/', include('posts.urls', namespace = 'posts')),
-    #path('posts/', views.posts_list, name='posts_list'),
+    # Встроенная админка Django подключена «из коробки» по адресу admin/
     path('admin/', admin.site.urls)
 ]
-
-    #Главная страница
-    #path('', views.Posts),
-    #Страница сообществ
-    #path('groups/', views.groups),
-    #path('group_posts/<slug:slug>/', views.group_posts)
-    #path('', include('posts.urls')),
