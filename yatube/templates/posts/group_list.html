@@ -1,6 +1,8 @@
 <!DOCTYPE html> <!-- Используется html 5 версии -->
+{% extends 'base.html' %}
 <html lang="ru"> <!-- Язык сайта - русский -->
-  <head>    
+  <head>
+    {% block title %}    
     <meta charset="utf-8"> <!-- Кодировка сайта -->
     <!-- Сайт готов работать с мобильными устройствами -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,6 +16,7 @@
     <!-- Подключен файл со стандартными стилями бустрап -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <title>Лев Толстой – зеркало русской революции.</title>
+    {% endblock %}
   </head>
   <body>
     <header>
@@ -30,6 +33,7 @@
       </nav>      
     </header>
     <main>
+      {% block content %}
       <!-- класс py-5 создает отступы сверху и снизу блока -->
       <div class="container py-5">
         <h1>Лев Толстой – зеркало русской революции.</h1>
@@ -97,7 +101,8 @@
           </p>
         </article>
         <!-- под последним постом нет линии -->
-      </div>  
+      </div>
+      {% endblock %}  
     </main>
     <footer class="page-footer font-small blue border-top">
       <div class="footer-copyright text-center py-3">© 2020 Copyright 
@@ -106,9 +111,3 @@
     </footer>
   </body>
 </html>
-
-<!-- templates/ice_cream/ice_cream_list.html
-{% extends 'base.html' %}
-{% block content %}
-  Список мороженого быть тут должен
-{% endblock %}-->
