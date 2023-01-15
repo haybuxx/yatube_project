@@ -18,7 +18,6 @@ from django.contrib import admin
 # Функция include позволит использовать path() из других файлов.
 # Импортируем!
 from django.urls import include, path
-from posts import views
 
 # Эта строчка обязательна. 
 # Без неё namespace работать не будет:
@@ -27,8 +26,7 @@ app_name = 'posts'
 
 urlpatterns = [
     #Импорт правил из приложения posts
-    path('', include('posts.urls', namespace = 'posts')),
-    path('group/<slug:slug>/', include('posts.urls', namespace = 'posts')),
+    path('', include('posts.urls', namespace='posts')),
     # Встроенная админка Django подключена «из коробки» по адресу admin/
     path('admin/', admin.site.urls)
 ]

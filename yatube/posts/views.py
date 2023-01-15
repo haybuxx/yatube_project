@@ -1,17 +1,22 @@
-from django.http import HttpResponse
-# Импортируем загрузчик.
-from django.template import loader
+from django.shortcuts import render, get_object_or_404
+from .models import Post, Group
 
+#Кол-во отображаемых постов
+POST_VIEW_COUNT = 10
 
 def index(request):
-    # Загружаем шаблон;
-    # шаблоны обычно хранят в отдельной директории.
-    template = loader.get_template('posts/index.html')
-    # Формируем шаблон
-    return HttpResponse(template.render({}, request))
-    #Страница сообществ
-def groups(request, slug):
-    return HttpResponse('Страница сообществ')
-    #Страница для постов
-def group_list(request):
-    return HttpResponse('Страница для постов')
+    posts = Post.objects.all()[:POST_VIEW_COUNT]
+    context = {
+        'title': 'Последние обновления на сайте',
+        'posts': posts,
+    }
+    return render(request, 'posts/index.html', context)
+
+def group_posts(request, slug):
+    group = get_object_or_404(Group, slug=slug)
+    posts = Post.group.all()[:POST_VIEW_COUNT]
+    context = {
+        'group': group,
+        'posts': posts
+    }
+    return render(request, 'posts/group_list.html', context)
