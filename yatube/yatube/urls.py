@@ -19,6 +19,7 @@ from django.contrib import admin
 # Импортируем!
 from django.urls import include, path
 
+
 # Эта строчка обязательна. 
 # Без неё namespace работать не будет:
 # namespace должен быть объявлен при include и тут, в app_name
